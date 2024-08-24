@@ -1,0 +1,54 @@
+let inputElementObj = document.getElementById('inputE1');
+let numberOne;
+let numberTwo;
+
+
+inputElementObj.addEventListener('keyup', (event) => {
+    if (event.key == 'Enter' || event.keyCode == 13) {
+        let tempVal = inputElementObj.value;
+        if (!isNaN(tempVal)) {
+
+            if (numberOne == undefined) {
+                numberOne = parseInt(tempVal);
+                document.getElementById('num1').textContent = numberOne;
+                inputElementObj.value = 0;
+            } else if (numberTwo == undefined) {
+                numberTwo = parseInt(tempVal);
+                document.getElementById('num2').textContent = numberTwo;
+                inputElementObj.value = 0;
+            } else {
+                alert('insert agin');
+                numberOne = undefined;
+                numberTwo = undefined;
+                document.getElementById('num1').textContent = '?';
+                document.getElementById('num2').textContent = '?';
+            }
+
+
+        }
+    }
+});
+
+
+const execute = (op) => {
+    if (!numberOne && !numberTwo) {
+        alert('please insert numbers');
+        return;
+    }
+
+    const operate = (result, op) => {
+        document.getElementById('ans').textContent = result;
+        document.getElementById('op').textContent = op;
+    }
+
+    switch (op) {
+        case '+': operate((numberOne + numberTwo), op); break;
+        case '-': operate((numberOne - numberTwo), op); break;
+        case '*': operate((numberOne * numberTwo), op); break;
+        case '/': operate((numberOne / numberTwo), op); break;
+        case '%': operate((numberOne % numberTwo), op);
+
+    }
+
+
+}
